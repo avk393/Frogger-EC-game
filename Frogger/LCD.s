@@ -63,7 +63,27 @@ writecommand
 ;5) Read SSI0_SR_R and check bit 4, 
 ;6) If bit 4 is high, loop back to step 5 (wait for BUSY bit to be low)
 
-    
+fstbusy	LDR R1, =SSI0_SR_R
+		LDR R2, [R1]				;grabs M[=SSIO_SR_R]
+		AND R2, R2, #0x10			;isolates bit 4 for checking
+		
+		CMP R2, #0				
+		BNE fstbusy
+		
+		LDR R1, =GPIO_PORTA_DATA_R	;step 3
+		LDR R2, [R1]	
+		BIC R2, #0x40
+		STR R2, [R1]				;store into PA
+		
+		LDR R1, =SSI0_DR_R			;step 4
+		STR R0, [R1]				
+		
+sndbusy	LDR R1, =SSI0_SR_R			;step 6
+		LDR R2, [R1]
+		AND R2, R2, #0x10
+		CMP R2, #0				
+		BNE sndbusy
+		
     
     BX  LR                          ;   return
 
@@ -78,6 +98,19 @@ writedata
 ;4) Write the 8-bit data to SSI0_DR_R
 
     
+fstbz	LDR R1, =SSI0_SR_R			;step 1
+		LDR R2, [R1]
+		AND R2, R2, #0x02
+		CMP R2, #0					;step 2
+		BEQ fstbz
+		
+		
+		LDR R1, =GPIO_PORTA_DATA_R
+		LDR R2, [R1]
+		ORR R2, R2, #0x40			;step 3
+		STR R2, [R1]
+		LDR R1, =SSI0_DR_R
+		STR R0, [R1] 
     
     BX  LR                          ;   return
 
