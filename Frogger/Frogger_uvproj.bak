@@ -464,6 +464,13 @@
         </Group>
         <Group>
           <GroupName>New Group</GroupName>
+          <Files>
+            <File>
+              <FileName>texas.o</FileName>
+              <FileType>3</FileType>
+              <FilePath>.\texas.o</FilePath>
+            </File>
+          </Files>
         </Group>
       </Groups>
     </Target>
