@@ -9,15 +9,15 @@
 ; ST7735_OutChar   outputs a single 8-bit ASCII character
 ; ST7735_OutString outputs a null-terminated string 
 
-
     IMPORT   ST7735_OutChar
     IMPORT   ST7735_OutString
     EXPORT   LCD_OutDec
     EXPORT   LCD_OutFix
 
     AREA    |.text|, CODE, READONLY, ALIGN=2
-	PRESERVE8
     THUMB
+
+  
 
 ;-----------------------LCD_OutDec-----------------------
 ; Output a 32-bit number in unsigned decimal format
@@ -25,30 +25,7 @@
 ; Output: none
 ; Invariables: This function must not permanently modify registers R4 to R11
 LCD_OutDec
-		PUSH {LR, R0}
-; ******Allocation Phase*******	
-	SUB SP, #4 ; Allocate num
-; *****Access Phase*******
-	CMP R0, #10
-	BLO baseOutDec
-	MOV R3, #0xA
-	UDIV R2, R0, R3
-	MLS R1, R2, R3, R0 
-	MOV R0, R2
-	STR R1, [SP, #0]
-	BL LCD_OutDec
-	LDR R0, [SP, #0]
-	ADD R0, #0x30
-	BL ST7735_OutChar
-	B returnOutDec
-baseOutDec
-	ADD R0, #0x30
-	BL ST7735_OutChar
-returnOutDec
-;****Deallocation Phase*****	
-	ADD SP, #4
-		
-	POP {LR, R0}
+
 
       BX  LR
 ;* * * * * * * * End of LCD_OutDec * * * * * * * *
@@ -66,58 +43,10 @@ returnOutDec
 ;       R0>9999, then output "*.*** "
 ; Invariables: This function must not permanently modify registers R4 to R11
 LCD_OutFix
-	MOV R1, #0
-LCD_OutFix_redo
-	PUSH {LR, R4, R1, R0}
-	
-; ******Allocation Phase*******	
-	SUB SP, #4 ; Allocate num
-; *****Access Phase*******
-	MOV R4, #10000
-	CMP R0, R4
-	BHS astericks
-	CMP R1, #4
-	BEQ returnOutFix
-	MOV R3, #0xa
-	UDIV R2, R0, R3
-	MLS R4, R2, R3, R0 
-	MOV R0, R2
-	STR R4, [SP, #0]
-	STR R1, [SP, #4]
-	ADD R1, #1
-	BL LCD_OutFix_redo
-	LDR R0, [SP, #0]
-	ADD R0, #0x30
-	BL ST7735_OutChar
-	LDR R1, [SP, #4]
-	CMP R1, #3
-	BNE returnOutFix
-	MOV R0, #0x2E
-	BL ST7735_OutChar
-	B returnOutFix
-astericks
-	MOV R0, #0x2A
-	BL ST7735_OutChar
-	MOV R0, #0x2E
-	BL ST7735_OutChar
-	MOV R0, #0x2A
-	BL ST7735_OutChar
-	MOV R0, #0x2A
-	BL ST7735_OutChar
-	MOV R0, #0x2A
-	BL ST7735_OutChar
-returnOutFix
-	
-;****Deallocation Phase*****	
-	ADD SP, #4
-	
-	
-	POP {LR, R4, R1, R0}
 
      BX   LR
-	 
-	 ALIGN
-
+ 
+     ALIGN
 ;* * * * * * * * End of LCD_OutFix * * * * * * * *
 
      ALIGN                           ; make sure the end of this section is aligned
