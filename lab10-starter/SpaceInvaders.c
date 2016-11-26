@@ -59,7 +59,7 @@
 
 
 void DisableInterrupts(void); // Disable interrupts
-	void EnableInterrupts(void); 
+void EnableInterrupts(void); 
 void Delay100ms(uint32_t count); // time delay in 0.1 seconds
 
 
@@ -631,7 +631,15 @@ const unsigned short black[] = {
  0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
  0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
  0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
- 0x0000, 0x0000, 0x0000, 0x0000,
+ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
+ 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000,
 
 };
 
@@ -645,7 +653,7 @@ void PortE_Init(void){
 	delay1 = SYSCTL_RCGCGPIO_R;
 	GPIO_PORTE_DIR_R &= ~0x03;					//making PE1 & PE0 input for switches
 	GPIO_PORTE_DEN_R &= ~0x03;
-	GPIO_PORTE_AFSEL_R |= 0x03;
+	GPIO_PORTE_AFSEL_R &= ~0x03;
 }
 // Initialize Port F so PF1, PF2 and PF3 are heartbeats
 void PortF_Init(void){
@@ -655,15 +663,15 @@ void PortF_Init(void){
 	delay1 = SYSCTL_RCGCGPIO_R;
  GPIO_PORTF_AMSEL_R &= ~0x00;     
  GPIO_PORTF_PCTL_R &= ~0xFF; // regular GPIO function
- GPIO_PORTF_DIR_R |= 0x0E;					// make PF1-3 input
+ GPIO_PORTF_DIR_R |= 0x0E;					// make PF1-3 output
  GPIO_PORTF_AFSEL_R &= ~0x0E;   // disable alt funct on PF1-3
  GPIO_PORTF_DEN_R |= 0x0E;      // enable digital I/O on PF1-3	
 }
 
 uint32_t Convert(uint32_t input){
-  input=input*7258;	
+  input=input*249;	
 	input = input / 10000;
-	input=input+297;
+	input=input+ 13;
 	if(input<1){
 		input= input/4;
 	}
@@ -672,14 +680,40 @@ uint32_t Convert(uint32_t input){
 
 void SysTick_Init(void){
 		NVIC_ST_CTRL_R = 0;         // disable SysTick during setup
-		NVIC_ST_RELOAD_R = 16000-1;// reload value
+		NVIC_ST_RELOAD_R = 80000-1;// reload value
 		NVIC_ST_CURRENT_R = 0;      // any write to current clears it
 		NVIC_SYS_PRI3_R = (NVIC_SYS_PRI3_R&0x00FFFFFF)|0x20000000; // priority 1
 		NVIC_ST_CTRL_R = 0x07; // enable SysTick with core clock and interrupts
 }
 
 int ADCstatus = 0;
-int ADCmail = 0;
+int frogposx = 52;
+int frogposy = 159;
+int posholder;
+int prevfrogposx = 0;
+int prevfrogposy = 0;
+int curfrogposx;
+int up = 0;
+int down = 0;
+	int x= 52;
+	int y = 159;
+ int i;
+
+void ChangeFrog(int posx, int posy){
+	if(x < posx){
+		x = x + 1;
+	}
+	else if( x > posx){
+		x = x-1;
+	}
+	
+	if( y < posy){
+		y = y + 22;
+	}
+	if (y > posy){
+		y = y - 22;
+	}
+}
 
 int main(void){
 	TExaS_Init();  // set system clock to 80 MHz
@@ -690,43 +724,53 @@ int main(void){
   Random_Init(1);
   Output_Init();
   //ST7735_FillScreen(0x0000);            // set screen to black
-int frogposx = 52;
-int frogposy = 159;
-int posholder;
 
-  ST7735_DrawBitmap(52, 159, frog, 29,22); // player middle bottom
-  //ST7735_DrawBitmap(0, 15, car1 , 25,20);
-
+  //ST7735_DrawBitmap(52, 159, frog, 29,22); // player middle bottom
+	int prevfrogx;
   //ST7735_FillScreen(0x0000);            // set screen to black
   /*ST7735_SetCursor(1, 1);
   ST7735_OutString("GAME OVER");
   ST7735_SetCursor(1, 2);*/
 	EnableInterrupts();
-  while(1){
-		GPIO_PORTF_DATA_R ^= 0x04;
-		
-	if(ADCstatus == 1){
-		//ST7735_DrawBitmap(frogposx, frogposy, black, 25, 20); 
-		frogposx = ADCmail;											//moving frog along x axis with slide pot
-		frogposx = Convert(frogposx);
-		posholder = frogposx;
-		frogposx = frogposx * 38;								
-		posholder = posholder * 78;
-		posholder = posholder / 100;
-		frogposx = frogposx + posholder;
-		ST7735_DrawBitmap(frogposx, frogposy, frog, 29, 22);
-		Delay100ms(1);
-		ADCstatus = 0;
-		}
-  }
 
+  while(1){
+
+		if(ADCstatus == 1){
+			for(i = 0; x != frogposx; i++){
+				ChangeFrog(frogposx, frogposy);
+				ST7735_DrawBitmap(x, y, frog, 29,22);
+			}
+			ADCstatus = 0;	
+			if (up == 1){
+				for(i = 0; y != frogposy; i++){
+				ChangeFrog(frogposx, frogposy);
+				ST7735_DrawBitmap(x, y, frog, 29,22);
+				}
+			}
+		}			
+	}
 }
+
+
 
 void SysTick_Handler(void){
 	GPIO_PORTF_DATA_R ^= 0x02;
-	ADCmail = ADC_In();
-	ADCstatus = 1;
-	//Delay100ms(1);
+	curfrogposx = frogposx;
+		frogposx = ADC_In();											//moving frog along x axis with slide pot
+		frogposx = Convert(frogposx);
+		ADCstatus = 1;
+		prevfrogposy = GPIO_PORTE_DATA_R & 0x01;
+		if(prevfrogposy == 0x01){
+			up = 1;
+			frogposy = frogposy - 22;
+			GPIO_PORTF_DATA_R ^= 0x04;
+		}
+		prevfrogposy = GPIO_PORTE_DATA_R & 0x02;
+		if(prevfrogposy == 0x02){
+			frogposy = frogposy + 22;
+			GPIO_PORTF_DATA_R ^= 0x04;
+		}
+		
 	GPIO_PORTF_DATA_R ^= 0x02;
 }
 

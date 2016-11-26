@@ -63,28 +63,22 @@ writecommand
 ;5) Read SSI0_SR_R and check bit 4, 
 ;6) If bit 4 is high, loop back to step 5 (wait for BUSY bit to be low)
 
-fstbusy	LDR R1, =SSI0_SR_R
-		LDR R2, [R1]				;grabs M[=SSIO_SR_R]
-		AND R2, R2, #0x10			;isolates bit 4 for checking
-		
-		CMP R2, #0				
-		BNE fstbusy
-		
-		LDR R1, =GPIO_PORTA_DATA_R	;step 3
-		LDR R2, [R1]	
+loop	LDR R1, =SSI0_SR_R    			;don't use R0
+		LDR R2, [R1]
+		AND R2, R2, #0x10	   			;check bit[4]
+		CMP R2, #0
+		BNE loop			   			;if BUSY bit is high, go back and wait for it to be low
+		LDR R1, =GPIO_PORTA_DATA_R		;if BUSY bit is low, bit clear bit[6]
+		LDR R2, [R1]
 		BIC R2, #0x40
-		STR R2, [R1]				;store into PA
-		
-		LDR R1, =SSI0_DR_R			;step 4
-		STR R0, [R1]				
-		
-sndbusy	LDR R1, =SSI0_SR_R			;step 6
+		STR R2, [R1]					;R1 has 0
+		LDR R1, =SSI0_DR_R				;put 0 into =SSIO_DR_R
+		STR R0, [R1]
+loop1	LDR R1, =SSI0_SR_R
 		LDR R2, [R1]
 		AND R2, R2, #0x10
-		CMP R2, #0				
-		BNE sndbusy
-		
-    
+		CMP R2, #0
+		BNE loop1    					;if BUSY bit2 is high, go back to loop1
     
     BX  LR                          ;   return
 
@@ -98,20 +92,17 @@ writedata
 ;3) Set D/C=PA6 to one
 ;4) Write the 8-bit data to SSI0_DR_R
 
-fstbz	LDR R1, =SSI0_SR_R			;step 1
+loop2	LDR R1, =SSI0_SR_R
 		LDR R2, [R1]
 		AND R2, R2, #0x02
-		CMP R2, #0					;step 2
-		BEQ fstbz
-		
-		
+		CMP R2, #0
+		BEQ loop2
 		LDR R1, =GPIO_PORTA_DATA_R
 		LDR R2, [R1]
-		ORR R2, R2, #0x40			;step 3
+		ORR R2, R2, #0x40
 		STR R2, [R1]
 		LDR R1, =SSI0_DR_R
-		STR R0, [R1] 
-    
+		STR R0, [R1]    
     
     BX  LR                          ;   return
 

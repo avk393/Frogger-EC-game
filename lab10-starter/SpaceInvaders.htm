@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\SpaceInvaders.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\SpaceInvaders.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Fri Nov 25 12:13:07 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5.03 [Build 76]: Last Updated: Sat Nov 26 00:52:39 2016
 <BR><P>
 <H3>Maximum Stack Usage =         96 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -14,12 +14,12 @@ Functions with no stack information
 </H3><UL>
  <LI><a href="#[7f]">Reset_Handler</a>
  <LI><a href="#[d0]">DisableInterrupts</a>
- <LI><a href="#[ac]">EnableInterrupts</a>
+ <LI><a href="#[ad]">EnableInterrupts</a>
  <LI><a href="#[d1]">StartCritical</a>
  <LI><a href="#[d2]">EndCritical</a>
  <LI><a href="#[d3]">WaitForInterrupt</a>
  <LI><a href="#[9a]">__user_initial_stackheap</a>
- <LI><a href="#[ab]">Random_Init</a>
+ <LI><a href="#[ac]">Random_Init</a>
  <LI><a href="#[d4]">Random32</a>
  <LI><a href="#[d5]">Random</a>
  <LI><a href="#[90]">writecommand</a>
@@ -701,7 +701,7 @@ Global Symbols
 
 <P><STRONG><a name="[d0]"></a>DisableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text), UNUSED)
 
-<P><STRONG><a name="[ac]"></a>EnableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
+<P><STRONG><a name="[ad]"></a>EnableInterrupts</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, startup.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -715,7 +715,7 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[86]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__user_setup_stackheap
 </UL>
 
-<P><STRONG><a name="[ab]"></a>Random_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, random.o(.text))
+<P><STRONG><a name="[ac]"></a>Random_Init</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, random.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -855,21 +855,19 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
-<P><STRONG><a name="[aa]"></a>ADC_Init</STRONG> (Thumb, 192 bytes, Stack size 0 bytes, adc.o(i.ADC_Init))
+<P><STRONG><a name="[ab]"></a>ADC_Init</STRONG> (Thumb, 192 bytes, Stack size 0 bytes, adc.o(i.ADC_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ad]"></a>Convert</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, spaceinvaders.o(i.Convert))
+<P><STRONG><a name="[ae]"></a>ChangeFrog</STRONG> (Thumb, 76 bytes, Stack size 0 bytes, spaceinvaders.o(i.ChangeFrog))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[ae]"></a>Delay100ms</STRONG> (Thumb, 30 bytes, Stack size 8 bytes, spaceinvaders.o(i.Delay100ms))
-<BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Delay100ms
-</UL>
-<BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[a6]"></a>Convert</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, spaceinvaders.o(i.Convert))
+<BR><BR>[Called By]<UL><LI><a href="#[c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Handler
 </UL>
 
-<P><STRONG><a name="[a6]"></a>Delay1ms</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, st7735.o(i.Delay1ms))
+<P><STRONG><a name="[a7]"></a>Delay1ms</STRONG> (Thumb, 32 bytes, Stack size 8 bytes, st7735.o(i.Delay1ms))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Delay1ms
 </UL>
 <BR>[Called By]<UL><LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commonInit
@@ -886,11 +884,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a8]"></a>PortE_Init</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, spaceinvaders.o(i.PortE_Init))
+<P><STRONG><a name="[a9]"></a>PortE_Init</STRONG> (Thumb, 74 bytes, Stack size 0 bytes, spaceinvaders.o(i.PortE_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[a9]"></a>PortF_Init</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, spaceinvaders.o(i.PortF_Init))
+<P><STRONG><a name="[aa]"></a>PortF_Init</STRONG> (Thumb, 98 bytes, Stack size 0 bytes, spaceinvaders.o(i.PortF_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -942,14 +940,15 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
 </UL>
 
-<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 48 bytes, Stack size 8 bytes, spaceinvaders.o(i.SysTick_Handler))
+<P><STRONG><a name="[c]"></a>SysTick_Handler</STRONG> (Thumb, 160 bytes, Stack size 8 bytes, spaceinvaders.o(i.SysTick_Handler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SysTick_Handler
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_In
+<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Convert
+<LI><a href="#[a5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_In
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[a7]"></a>SysTick_Init</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, spaceinvaders.o(i.SysTick_Init))
+<P><STRONG><a name="[a8]"></a>SysTick_Init</STRONG> (Thumb, 42 bytes, Stack size 0 bytes, spaceinvaders.o(i.SysTick_Init))
 <BR><BR>[Called By]<UL><LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -963,21 +962,20 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup.o(RESET)
 </UL>
-<P><STRONG><a name="[8a]"></a>main</STRONG> (Thumb, 140 bytes, Stack size 8 bytes, spaceinvaders.o(i.main))
+<P><STRONG><a name="[8a]"></a>main</STRONG> (Thumb, 194 bytes, Stack size 8 bytes, spaceinvaders.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 96 + Unknown Stack Size
 <LI>Call Chain = main &rArr; Output_Init &rArr; ST7735_InitR &rArr; ST7735_FillScreen &rArr; ST7735_FillRect &rArr; setAddrWindow
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TExaS_Init
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_DrawBitmap
 <LI><a href="#[9c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Output_Init
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
-<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Init
-<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortE_Init
-<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay100ms
-<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Convert
-<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Init
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Random_Init
-<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
+<LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SysTick_Init
+<LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortF_Init
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;PortE_Init
+<LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChangeFrog
+<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_Init
+<LI><a href="#[ac]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Random_Init
+<LI><a href="#[ad]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EnableInterrupts
 </UL>
 <BR>[Called By]<UL><LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -989,7 +987,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 32 + Unknown Stack Size
 <LI>Call Chain = commandList &rArr; Delay1ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay1ms
+<BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay1ms
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writedata
 <LI><a href="#[90]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;writecommand
 </UL>
@@ -1001,7 +999,7 @@ Local Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 40 + Unknown Stack Size
 <LI>Call Chain = commonInit &rArr; commandList &rArr; Delay1ms
 </UL>
-<BR>[Calls]<UL><LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay1ms
+<BR>[Calls]<UL><LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Delay1ms
 <LI><a href="#[a3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;commandList
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ST7735_InitR
