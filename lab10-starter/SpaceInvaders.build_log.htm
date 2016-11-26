@@ -18,13 +18,23 @@ compiling Sound.c...
 assembling LCD.s...
 assembling Print.s...
 compiling SpaceInvaders.c...
-SpaceInvaders.c(729): warning:  #177-D: variable "prevfrogx" was declared but never referenced
-        int prevfrogx;
-SpaceInvaders.c: 1 warning, 0 errors
+SpaceInvaders.c(508): warning:  #223-D: function "CheckUp" declared implicitly
+                int checku = CheckUp();
+SpaceInvaders.c(509): warning:  #223-D: function "CheckDown" declared implicitly
+                int checkd = CheckDown();
+SpaceInvaders.c(570): warning:  #550-D: variable "prevfrogpos" was set but never used
+        int prevfrogpos;
+SpaceInvaders.c: 3 warnings, 0 errors
 compiling ST7735.c...
 linking...
-Program Size: Code=4704 RO-data=19812 RW-data=164 ZI-data=1180  
-".\SpaceInvaders.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=4932 RO-data=12500 RW-data=140 ZI-data=1180  
+".\SpaceInvaders.axf" - 0 Error(s), 3 Warning(s).
+Load "C:\\Users\\kandikonda\\Documents\\Lab10\\lab10-starter\\SpaceInvaders.axf" 
+Connecting: Mode=JTAG, Speed=1000000Hz
+Erase Done.
+Programming Done.
+Verify OK.
+ash Download failed  -  Target DLL has been cancelled
 Load "C:\\Users\\kandikonda\\Documents\\Lab10\\lab10-starter\\SpaceInvaders.axf" 
 Connecting: Mode=JTAG, Speed=1000000Hz
 Erase Done.
