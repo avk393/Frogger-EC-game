@@ -290,7 +290,7 @@
       <Focus>0</Focus>
       <ColumnNumber>46</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>78</TopLine>
+      <TopLine>82</TopLine>
       <CurrentLine>83</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\LCD.s</PathWithFileName>
@@ -320,10 +320,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>1</ColumnNumber>
+      <ColumnNumber>39</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>120</TopLine>
-      <CurrentLine>597</CurrentLine>
+      <TopLine>595</TopLine>
+      <CurrentLine>618</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\SpaceInvaders.c</PathWithFileName>
       <FilenameWithoutPath>SpaceInvaders.c</FilenameWithoutPath>
