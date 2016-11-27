@@ -461,6 +461,24 @@ void SysTick_Init(void){
 		NVIC_ST_CTRL_R = 0x07; // enable SysTick with core clock and interrupts
 }
 
+struct Cars {
+	unsigned short poscarx;
+	int poscary;
+	const unsigned short *image;
+	int direction;      //1 means left
+	int speed;
+};
+
+typedef struct Cars CarsList;
+
+CarsList Sprite[5]= {
+	{99, 137, car1, 1, 0},
+	{0, 115, car3, 0, 0},
+	{99, 71, car2, 1, 0},
+	{0, 49,  car4, 0, 0},
+	{99, 27, popocar, 1, 0}
+};
+
 int frogposx = 52;
 int frogposy = 159;
 int up = 0;
@@ -484,6 +502,14 @@ void ChangeFrogY(int posy){
 	else if (y > posy){
 		y = y - 22;
 	}
+}
+
+int UpdateCar1X(int carx){
+		carx = carx - 1;
+	if(carx < 0 ){
+		carx = 99;
+	}
+	return carx;
 }
 
 int main(void){
