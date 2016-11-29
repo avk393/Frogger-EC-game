@@ -6,3 +6,4 @@
 .\spaceinvaders.o: TExaS.h
 .\spaceinvaders.o: ADC.h
 .\spaceinvaders.o: print.h
+.\spaceinvaders.o: Sound.h
